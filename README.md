@@ -21,8 +21,7 @@ We use the OpenShift stock Ruby S2I builder image.
 
 ## Deploy your app
 
-Config for this deployment is split into yaml files. You should definitely take a look at each of these files or none of this will make any sense.
-Components of this deployment are split into separate yaml files. We'll be using
+Config for this deployment is split into multiple yaml files. You should definitely take a good look at every of those config files, or none of this will make any sense.
 
 If you don't feel at home with the various command needed for inspecting the state of your OpenShift environment (`oc get ...`, `oc describe ...` etc.) then use the web interface at https://localhost:8443 to get a better view of what's happening.
 
@@ -36,15 +35,17 @@ Create the image stream for the stock Ruby S2I builder image we looked at earlie
     $ oc get is ruby-22-centos7
     $ oc describe is ruby-22-centos7
 
-And create a second image stream for our application image.
+And also create the image stream for our application image.
 
     $ oc create -f sinatra-example-is.yaml
     $ oc get is sinatra-example
     $ oc describe is sinatra-example
 
-Open a second terminal and run `oc get pods --watch`. Keeping an eye on this should give you a better idea of what's going on if builds get kicked off etc.
+The output of the last describe command should show the there are no images currently associated with this stream. (_Tags: <none>_).
 
 ## Build config
+
+Open a terminal window and run `oc get pods --watch`. Keep this open during the workshop. Keeping an eye on this should give you a better idea of what's going on if builds get kicked off etc.
 
 Now we are are ready to create the build config for our application. (If you forked the repo then you need to edit the `sinatra-example-bc.yaml` file first. Update the `source.git.uri` field).
 
@@ -65,7 +66,7 @@ Or you can restart the build and tail it's logs.
 
 ## Deployment config & service
 
-
+Now we're ready to deploy our application.
 
     $ oc create -f sinatra-example-dc.yaml
     $ oc get dc sinatra-example
