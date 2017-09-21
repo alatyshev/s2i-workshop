@@ -2,7 +2,7 @@
 
 ## Development environment
 
-This assumes you have the OpenShift CLI installed on your machine. It would be best if you're running version 3.6.0 (`oc version`). If you already don't have a local OpenShift cluster running then `oc cluster up` and `oc login -u system:admin`. If you can see the single node of your cluster by running `oc get nodes` then you're good to go.
+This assumes you have the OpenShift CLI installed on your machine. It would be best if you're running version 3.6.0 (`oc version`). If you already don't have a local OpenShift cluster running then `oc cluster up`. You can run something like `oc version` to check that the API server is actually accessible.
 
 ## Example ruby app
 
